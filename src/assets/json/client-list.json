@@ -1,0 +1,79 @@
+[
+	{
+	  "displayName": "Requirement Management",
+	  "children": [
+		{
+		  "displayName": "Requirement",
+		  "iconName": "../../../../assets/images/requriement.svg",
+		  "route": "project/Requirement/",
+		  "first": "project/",
+		  "last":"/Requirement"
+		}
+	  ]
+	},
+	{
+	  "displayName": "Project Management",
+	  "children": [
+		{
+		  "displayName": "Modules",
+		  "iconName": "../../../../assets/images/requriement.svg",
+		  "route": "project/module/",
+		  "first": "project/",
+		  "last":"/module"
+		},
+		{
+		  "displayName": "Team",
+		  "iconName": "../../../../assets/images/requriement.svg",
+		  "route": "project/projectteam/",
+		  "first": "project/",
+		  "last":"/projectteam"
+		},
+		{
+		  "displayName": "Task",
+		  "iconName": "../../../../assets/images/requriement.svg",
+		  "route": "project/team_member/",
+		  "first": "project/",
+		  "last":"/team_member"
+		}
+	  ]
+	},
+	{
+	  "displayName": "Release Management",
+	  "children": [
+		{
+		  "displayName": "Release",
+		  "iconName": "../../../../assets/images/requriement.svg",
+		  "route": "data/edit/release/",
+		  "first": "project/",
+		  "last":"/release"
+		},
+		{
+		  "displayName": "Sprint",
+		  "iconName": "../../../../assets/images/requriement.svg",
+		  "route": "data/edit/project_sprint/",
+		  "first": "project/",
+		  "last":"/sprint"
+		}
+	  ]
+	},
+	{
+	  "displayName": "QA",
+	  "children": [
+		{
+		  "displayName": "Test Case",
+		  "iconName": "../../../../assets/images/requriement.svg",
+		  "route": "data/edit/regression/",
+		  "first": "project/",
+		  "last":"/regression"
+		},
+		{
+		  "displayName": "Bug List",
+		  "iconName": "../../../../assets/images/requriement.svg",
+		  "route": "project/bug_list/",
+		  "first": "project/",
+		  "last":"/bug_list"
+		}
+	  ]
+	}
+  ]
+  

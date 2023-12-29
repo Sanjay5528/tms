@@ -1,0 +1,35 @@
+<div>
+  <div style="
+      
+      
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+    ">
+      <div class="head">
+          <span>
+              <p>My Entry</p>
+          </span>
+      </div>
+  </div>
+</div>
+
+<!-- height: 50px; margin: 30px;-->
+
+
+<div class='demo-app'>
+  
+    <div class='demo-app-main'>
+      
+      <full-calendar #fullCalendar *ngIf='calendarVisible()' [options]='calendarOptions()'>
+        <ng-template #eventContent let-arg>
+             <div class="circle-wrapper">
+              <div class="circle">{{ arg.event.title }}</div>
+            </div>
+           </ng-template>
+      </full-calendar>
+    </div>
+  
+  </div>
+  <!-- component.html -->
+

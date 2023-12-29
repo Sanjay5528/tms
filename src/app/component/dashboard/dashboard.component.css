@@ -1,0 +1,24 @@
+/* Apply black background to the card */
+g.card rect.card {
+    fill: black;
+  }
+  
+  /* Apply styles to the label text */
+  g.trimmed-label p {
+    color: rgb(204, 204, 204);
+    font-size: 15px;
+    line-height: 15px;
+  }
+  
+  /* Apply styles to the value text */
+  text.value-text {
+    fill: rgb(204, 204, 204);
+    font-size: 25pt;
+  }
+    .page-Heading {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-weight: bold;
+      font-size: x-large;
+      flex: 1 1 auto;
+      color: black
+    }

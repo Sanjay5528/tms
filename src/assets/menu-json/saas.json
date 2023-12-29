@@ -1,0 +1,295 @@
+bson.A{
+    bson.D{{"$match", bson.D{{"_id", "8b0d9a2aa5eb4a19b15f1ea27dfe0477"}}}},
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "testcase"},
+                {"localField", "project_id"},
+                {"foreignField", "project_id"},
+                {"as", "testcase"},
+            },
+        },
+    },
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "test_result"},
+                {"localField", "project_id"},
+                {"foreignField", "project_id"},
+                {"as", "test_result"},
+            },
+        },
+    },
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "regression"},
+                {"localField", "project_id"},
+                {"foreignField", "project_id"},
+                {"as", "regression"},
+            },
+        },
+    },
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "modules"},
+                {"localField", "project_id"},
+                {"foreignField", "project_id"},
+                {"as", "modules"},
+            },
+        },
+    },
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "release"},
+                {"localField", "project_id"},
+                {"foreignField", "project_id"},
+                {"as", "release"},
+            },
+        },
+    },
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "requirement"},
+                {"localField", "project_id"},
+                {"foreignField", "project_id"},
+                {"as", "requirement"},
+            },
+        },
+    },
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "sprint"},
+                {"localField", "project_id"},
+                {"foreignField", "project_id"},
+                {"as", "sprint"},
+            },
+        },
+    },
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "task"},
+                {"localField", "project_id"},
+                {"foreignField", "project_id"},
+                {"as", "task"},
+            },
+        },
+    },
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "team_specification"},
+                {"localField", "project_id"},
+                {"foreignField", "project_id"},
+                {"as", "team_specification"},
+            },
+        },
+    },
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "bug"},
+                {"localField", "project_id"},
+                {"foreignField", "project_id"},
+                {"as", "bug"},
+            },
+        },
+    },
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "bug_Histoy"},
+                {"localField", "project_id"},
+                {"foreignField", "project_id"},
+                {"as", "bug_Histoy"},
+            },
+        },
+    },
+    bson.D{
+        {"$addFields",
+            bson.D{
+                {"taskCount", bson.D{{"$size", "$task"}}},
+                {"testcaseCount", bson.D{{"$size", "$testcase"}}},
+                {"requirementCount", bson.D{{"$size", "$requirement"}}},
+            },
+        },
+    },
+    bson.D{
+        {"$unwind",
+            bson.D{
+                {"path", "$testcase"},
+                {"preserveNullAndEmptyArrays", true},
+            },
+        },
+    },
+    bson.D{
+        {"$unwind",
+            bson.D{
+                {"path", "$test_result"},
+                {"preserveNullAndEmptyArrays", true},
+            },
+        },
+    },
+    bson.D{
+        {"$unwind",
+            bson.D{
+                {"path", "$regression"},
+                {"preserveNullAndEmptyArrays", true},
+            },
+        },
+    },
+    bson.D{
+        {"$unwind",
+            bson.D{
+                {"path", "$bug"},
+                {"preserveNullAndEmptyArrays", true},
+            },
+        },
+    },
+    bson.D{
+        {"$lookup",
+            bson.D{
+                {"from", "client"},
+                {"localField", "client_id"},
+                {"foreignField", "client_id"},
+                {"as", "client"},
+            },
+        },
+    },
+    bson.D{
+        {"$unwind",
+            bson.D{
+                {"path", "$client"},
+                {"preserveNullAndEmptyArrays", true},
+            },
+        },
+    },
+    bson.D{
+        {"$group",
+            bson.D{
+                {"_id", "$_id"},
+                {"project_name", bson.D{{"$first", "$project_name"}}},
+                {"project_type", bson.D{{"$first", "$project_type"}}},
+                {"projectdetails", bson.D{{"$first", "$projectdetails"}}},
+                {"client_id", bson.D{{"$first", "$client_id"}}},
+                {"client_name", bson.D{{"$first", "$client.client_name"}}},
+                {"logo", bson.D{{"$first", "$client.logo"}}},
+                {"TestCasePositive",
+                    bson.D{
+                        {"$sum",
+                            bson.D{
+                                {"$cond",
+                                    bson.A{
+                                        bson.D{
+                                            {"$eq",
+                                                bson.A{
+                                                    "$testcase.test_case_scenario",
+                                                    "P",
+                                                },
+                                            },
+                                        },
+                                        1,
+                                        0,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                {"TestCaseNegative",
+                    bson.D{
+                        {"$sum",
+                            bson.D{
+                                {"$cond",
+                                    bson.A{
+                                        bson.D{
+                                            {"$eq",
+                                                bson.A{
+                                                    "$testcase.test_case_scenario",
+                                                    "N",
+                                                },
+                                            },
+                                        },
+                                        1,
+                                        0,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                {"TestResultPass",
+                    bson.D{
+                        {"$sum",
+                            bson.D{
+                                {"$cond",
+                                    bson.A{
+                                        bson.D{
+                                            {"$eq",
+                                                bson.A{
+                                                    "$test_result.result_status",
+                                                    "P",
+                                                },
+                                            },
+                                        },
+                                        1,
+                                        0,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                {"TestResultFail",
+                    bson.D{
+                        {"$sum",
+                            bson.D{
+                                {"$cond",
+                                    bson.A{
+                                        bson.D{
+                                            {"$eq",
+                                                bson.A{
+                                                    "$test_result.result_status",
+                                                    "F",
+                                                },
+                                            },
+                                        },
+                                        1,
+                                        0,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                {"LogicalError",
+                    bson.D{
+                        {"$sum",
+                            bson.D{
+                                {"$cond",
+                                    bson.A{
+                                        bson.D{
+                                            {"$eq",
+                                                bson.A{
+                                                    "$test_result.error_type",
+                                                    "logical_error",
+                                                },
+                                            },
+                                        },
+                                        1,
+                                        0,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    },
+}

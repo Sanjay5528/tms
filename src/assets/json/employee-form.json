@@ -1,0 +1,116 @@
+{
+  "pageHeading": "Realse",
+  "formType": "simple",
+  "editMode": "popup",
+  "keyField": "_id",
+  "form": {
+    "collectionName": "release",
+    "fields": [
+      {
+        "fieldGroupClassName": "display-flex",
+        "fieldGroup": [
+          {
+            "type": "label-view",
+            "key": "_id",
+            "className": "flex-6",
+            "props": {
+              "label": "Release Id",
+              "label_width": 100,
+              "value_width": 200,
+              "value_in_next_row": false,
+              "placeholder": "Release Id"
+            },
+            "hideExpression": "!model.isEdit"
+          },
+          {
+            "type": "label-view",
+            "key": "name",
+            "className": "flex-6",
+            "props": {
+              "label_width": 100,
+              "value_width": 200,
+              "value_in_next_row": true,
+              "label": "Release Name",
+              "placeholder": "Release Name"
+            },
+            "hideExpression": "!model.isEdit"
+          },
+          {
+            "type": "input",
+            "key": "name",
+            "className": "flex-8",
+            "props": {
+              "label": "Release Name",
+              "placeholder": "Release Name",
+              "pattern": "^[a-zA-Z0-9-_]*$",
+              "required": true
+            },
+            "hideExpression": "model.isEdit"
+          }
+        ]
+      },
+      {
+        "fieldGroupClassName": "display-flex",
+        "fieldGroup": [
+          {
+            "key": "start_date",
+            "type": "date-input",
+            "className": "flex-6",
+            "props": {
+              "label": "Scheduled Start Date",
+              "placeholder": "Scheduled Start Date",
+              "type": "date",
+              "required": true
+            }
+          },
+          {
+            "key": "end_date",
+            "type": "date-input",
+            "className": "flex-6",
+            "parentKey": "start_date",
+            "props": {
+              "label": "Scheduled End Date",
+              "placeholder": "Scheduled End Date",
+              "type": "date",
+              "required": true
+            }
+          },
+          {
+            "type": "select",
+            "key": "status",
+            "className": "flex-6",
+            "props": {
+              "label": "Status",
+              "options": [
+                {
+                  "label": "Active",
+                  "value": "A"
+                },
+                {
+                  "label": "Inactive",
+                  "value": "I"
+                }
+              ],
+              "placeholder": "Status",
+              "required": true
+            },
+
+            "expressions": {
+              "hide": "!model.isEdit"
+            }
+          }
+        ]
+      },
+      {
+        "type": "html-input",
+        "key": "description",
+        "className": "flex-6",
+        "props": {
+          "label": "Release Description"
+        },
+
+        "maxlength": 500
+      }
+    ]
+  }
+}
